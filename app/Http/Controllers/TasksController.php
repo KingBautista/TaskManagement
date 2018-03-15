@@ -100,10 +100,10 @@ class TasksController extends Controller
 	{
 
         // Find user by id
-        $Task = Task::find($id);
+        $task = Task::find($id);
 
         $params = [
-            'user' => $Task, 
+            'task' => $task, 
             'id' => $id
         ];
 
@@ -123,6 +123,28 @@ class TasksController extends Controller
 
     {
 
+        // validate request
+        $this->validate(request(),[
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'date_accomplish' => 'required',
+            'status' => 'required',
+        ]);
+
+        $task = Task::find($id);
+
+        // Set new value
+        $task->name = $request->get('name');
+        $task->description = $request->get('description');
+        $task->date_accomplish = $request->get('date_accomplish');
+        $task->status = $request->get('status');
+        $task->updated_at = date("Y-m-d H:i:s");
+
+        // save updated user
+        $task->save();
+
+        // Redirect to index page
+        return redirect('/tasks'); 
 
     }
 

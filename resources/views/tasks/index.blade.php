@@ -36,11 +36,15 @@
                         <td>{{ $task->status }}</td>
                         <td>
                             <a href="{{action('TasksController@edit', $task['id'])}}" class="btn btn-primary" title="Edit">Edit</a>&nbsp;
+                            @if (Auth::user()->role === 1)
+                            
                             <form action="{{action('TasksController@destroy', $task['id'])}}" method="post" style="display: inline-block;">
                                 {{csrf_field()}}
                                 <input name="_method" type="hidden" value="DELETE">
                                 <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
+
+                            @endif
                         </td>
                     </tr>            
                 @endforeach

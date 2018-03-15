@@ -34,11 +34,16 @@
                         <td>{{ $user->updated_at }}</td>
                         <td>
                             <a href="{{action('UsersController@edit', $user['id'])}}" class="btn btn-primary" title="Edit">Edit</a>&nbsp;
+                            
+                            @if (Auth::user()->role === 1)
+
                             <form action="{{action('UsersController@destroy', $user['id'])}}" method="post" style="display: inline-block;">
                                 {{csrf_field()}}
                                 <input name="_method" type="hidden" value="DELETE">
                                 <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
+
+                            @endif
                         </td>
                     </tr>            
                 @endforeach
