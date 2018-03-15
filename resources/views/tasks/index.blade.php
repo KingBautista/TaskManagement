@@ -33,7 +33,7 @@
                         <td>{{ $task->description }}</td>
                         <td>{{ $task->created_at }}</td>
                         <td>{{ $task->date_accomplish }}</td>
-                        <td>{{ $task->status }}</td>
+                        <td>{{ $task->status === 1 ? 'Pending' : 'Completed'  }}</td>
                         <td>
                             <a href="{{action('TasksController@edit', $task['id'])}}" class="btn btn-primary" title="Edit">Edit</a>&nbsp;
                             @if (Auth::user()->role === 1)
