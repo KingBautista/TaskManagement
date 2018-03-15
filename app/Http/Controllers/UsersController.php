@@ -135,7 +135,6 @@ class UsersController extends Controller
         $this->validate(request(),[
 		    'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:6|confirmed',
             'role' => 'required',
 		]);
 
@@ -144,7 +143,6 @@ class UsersController extends Controller
         // Set new value
         $User->name = $request->get('name');
         $User->email = $request->get('email');
-        $User->password = bcrypt($request->get('password'));
         $User->role = $request->get('role');
         $User->updated_at = date("Y-m-d H:i:s");
 

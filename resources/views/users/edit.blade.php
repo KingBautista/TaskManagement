@@ -38,28 +38,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
                         @if (Auth::user()->role === 1)
 
                         <div class="form-group">
@@ -67,8 +45,8 @@
 
                             <div class="col-md-6">
                                 <select id="role" name="role" class="form-control">
-                                    <option value="1">Team Lead</option>
-                                    <option value="2" selected="selected">Team Member</option>
+                                    <option value="1" {{ $user->role === 1 ? 'selected="selected"' : '' }}>Team Lead</option>
+                                    <option value="2" {{ $user->role === 2 ? 'selected="selected"' : '' }}>Team Member</option>
                                 </select>
 
                                 @if ($errors->has('role'))

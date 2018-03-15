@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Task;
 
 class TasksController extends Controller
@@ -30,8 +31,7 @@ class TasksController extends Controller
     public function index()
 
     {
-
-        $tasks = Task::orderBy('created_at', 'desc')->get();
+        $tasks = Task::where('user_id',Auth::user()->id)->orderBy('created_at', 'desc')->get();
         $params = [
             'tasks' => $tasks, 
         ];
@@ -75,6 +75,7 @@ class TasksController extends Controller
 
         // set value for saving
         $task = new Task([
+            'user_id' => $request->get('user_id'),            
             'name' => $request->get('name'),
             'description' => $request->get('description'),
             'date_accomplish' => $request->get('date_accomplish'),
