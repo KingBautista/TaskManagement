@@ -1,4 +1,4 @@
-@extends('default.master');
+@extends('layouts.app')
 
 @section('content')
 
@@ -7,7 +7,7 @@
 </div>
 
 <div class="links">
-    <a href="/register">Register</a>
+    <a href="/users">Users</a>
     <a href="/tasks">Tasks</a>
 </div>
 
